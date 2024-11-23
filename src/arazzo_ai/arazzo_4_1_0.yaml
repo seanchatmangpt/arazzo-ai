@@ -1,0 +1,134 @@
+arazzo: 4.1.0
+info:
+  title: AI-Enhanced Pet Purchasing Workflow
+  summary: This Arazzo Description showcases the workflow for how to purchase a pet through a sequence of API calls with AI assistance.
+  description: |
+      This Arazzo Description walks you through the workflow and steps of `searching` for, `selecting`, and `purchasing` an available pet. It includes AI-assisted decision-making, compliance checks, and monitoring.
+  version: 1.0.1
+sourceDescriptions:
+- name: petStoreDescription
+  url: https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml
+  type: openapi
+  authentication:
+    type: apiKey
+    credentials:
+      name: X-Api-Key
+      in: header
+      value: your-api-key-here
+
+workflows:
+- workflowId: loginUserAndRetrievePet
+  name: Login and Retrieve Pet Workflow
+  summary: Login User and then retrieve pets
+  description: This workflow lays out the steps to login a user and then retrieve pets, enhanced with AI-driven decision-making and compliance checks.
+  inputs:
+      type: object
+      properties:
+          username:
+              type: string
+          password:
+              type: string
+  steps:
+    - stepId: loginStep
+      name: User Login Step
+      description: This step demonstrates the user login step
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          value: $inputs.username
+        - name: password
+          in: query
+          value: $inputs.password
+      successCriteria:
+        - condition: $statusCode == 200
+      outputs:
+        tokenExpires: $response.header.X-Expires-After
+        rateLimit: $response.header.X-Rate-Limit
+        sessionToken: $response.body
+    - stepId: getPetStep
+      name: Retrieve Available Pets
+      description: Retrieve a pet by status from the GET pets endpoint
+      operationPath: '{$sourceDescriptions.petStoreDescription.url}#/paths/~1pet~1findByStatus/get'
+      parameters:
+        - name: status
+          in: query
+          value: 'available'
+        - name: Authorization
+          in: header
+          value: $steps.loginStep.outputs.sessionToken
+      successCriteria:
+        - condition: $statusCode == 200
+      outputs:
+        availablePets: $response.body
+    - stepId: analyzePetSelection
+      name: Analyze Pet Selection
+      description: Uses AI to determine the best pet based on user preferences and available data.
+      aiModel: aiModelPlugin.predictPetSelection
+      parameters:
+        - name: availablePets
+          in: body
+          value: $steps.getPetStep.outputs.availablePets
+      successCriteria:
+        - condition: $statusCode == 200
+      onSuccess:
+        - name: notifyUser
+          type: notify
+          notificationId: userNotification
+          criteria:
+            - condition: $steps.analyzePetSelection.outputs.recommendedPet != null
+      onFailure:
+        - name: retryAnalysis
+          type: retry
+          retryAfter: 2
+          retryLimit: 3
+          criteria:
+            - condition: $statusCode == 503
+      outputs:
+        recommendedPet: $steps.analyzePetSelection.outputs.recommendedPet
+      humanTask:
+        assignedTo: support_team
+        taskType: review
+        instructions: Please review the AI-recommended pet selection and confirm suitability.
+        deadline: 2024-06-01T12:00:00Z
+        priority: high
+      resources:
+        cpu: "2"
+        memory: "4Gi"
+        gpu: "1"
+        environment:
+          ENV: production
+  successActions:
+    - name: NotifyUser
+      type: notify
+      notificationId: userNotification
+      criteria:
+        - condition: $steps.analyzePetSelection.outputs.recommendedPet != null
+  failureActions:
+    - name: retryStep
+      type: retry
+      retryAfter: 1
+      retryLimit: 5
+      criteria:
+          - condition: $statusCode == 503
+  outputs:
+      available: $steps.getPetStep.availablePets
+  parameters:
+    - name: storeId
+      in: header
+      value: $inputs.x-store-id
+  ai_models:
+    - modelId: dt-001
+      name: Decision Tree Model
+      version: "1.0.0"
+      path: "models/decision_tree.pkl"
+      parameters:
+        threshold: 0.75
+      description: AI model used for recommending pets based on user preferences and available data.
+plugins:
+  - name: aiModelPlugin
+    version: "1.0.0"
+    description: Integrates AI models for decision-making and optimization.
+    config:
+      modelPath: "models/decision_tree.pkl"
+      threshold: 0.75

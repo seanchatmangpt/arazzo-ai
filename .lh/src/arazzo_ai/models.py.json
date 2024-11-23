@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/arazzo_ai/models.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1729719891814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1729719898748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,10 +80,11 @@\n     for wf in spec.workflows:\n         wf.inputs\n \n \n+\n def run_workflow(wf, inputs):\n-    \n \n \n+\n if __name__ == '__main__':\n     main()\n"
+                },
+                {
+                    "date": 1729719905471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,11 @@\n     for wf in spec.workflows:\n         wf.inputs\n \n \n+def validate_inputs\n \n+\n def run_workflow(wf, inputs):\n \n \n \n"
+                },
+                {
+                    "date": 1729719946357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,12 +80,12 @@\n     for wf in spec.workflows:\n         wf.inputs\n \n \n-def validate_inputs\n+def validate_inputs()\n \n \n-def run_workflow(wf, inputs):\n+def run_workflow(wf, inp_sche):\n \n \n \n if __name__ == '__main__':\n"
+                },
+                {
+                    "date": 1729719951627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,12 +80,13 @@\n     for wf in spec.workflows:\n         wf.inputs\n \n \n-def validate_inputs()\n+def validate_inputs(inp_schema, inputs):\n+    pass\n \n \n-def run_workflow(wf, inp_sche):\n+def run_workflow(wf, inp_schema):\n \n \n \n if __name__ == '__main__':\n"
+                },
+                {
+                    "date": 1729719956744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,9 +81,9 @@\n         wf.inputs\n \n \n def validate_inputs(inp_schema, inputs):\n-    pass\n+    \n \n \n def run_workflow(wf, inp_schema):\n \n"
+                },
+                {
+                    "date": 1729719962191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,9 +81,9 @@\n         wf.inputs\n \n \n def validate_inputs(inp_schema, inputs):\n-    \n+    \"\"\"Validate inputs against the input schema\"\"\"\n \n \n def run_workflow(wf, inp_schema):\n \n"
+                },
+                {
+                    "date": 1729719968514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,9 @@\n \n \n def validate_inputs(inp_schema, inputs):\n     \"\"\"Validate inputs against the input schema\"\"\"\n+    #\n \n \n def run_workflow(wf, inp_schema):\n \n"
+                }
+            ],
+            "date": 1729719891814,
+            "name": "Commit-0",
+            "content": "from pathlib import Path\nfrom typing import List, Optional, Union, Dict, Any\nfrom pydantic import Field\nfrom dslmodel import DSLModel\n\n\nclass Info(DSLModel):\n    title: str = Field(..., alias='title', description=\"A human-readable title of the Arazzo Description.\")\n    version: str = Field(..., alias='version', description=\"Version identifier of the Arazzo document.\")\n\n\nclass SourceDescription(DSLModel):\n    name: str = Field(..., alias='name', pattern=r\"^[A-Za-z0-9_\\-]+$\", description=\"Unique name for the source description.\")\n    url: str = Field(..., alias='url', description=\"URL of the source description.\")\n    type_: str = Field(..., alias='type', description=\"Type of source description (e.g., 'openapi', 'arazzo').\")\n\n\nclass Criterion(DSLModel):\n    context: Optional[str] = Field(None, alias='context', description=\"Context for the condition.\")\n    condition: str = Field(..., alias='condition', description=\"The condition to apply.\")\n    type_: str = Field(\"simple\", alias='type', description=\"Type of the condition: 'simple', 'regex', 'jsonpath', or 'xpath'.\")\n\n\nclass Parameter(DSLModel):\n    name: str = Field(..., alias='name', description=\"Name of the parameter.\")\n    in_: str = Field(..., alias='in', description=\"Parameter location ('path', 'query', 'header', 'cookie').\")\n    value: str = Field(..., alias='value', description=\"The value to pass in the parameter.\")\n\n\nclass RequestBody(DSLModel):\n    content_type: str = Field(..., alias='contentType', description=\"The Content-Type of the request body.\")\n    payload: Union[Dict[str, Any], str] = Field(..., alias='payload', description=\"Payload for the request body.\")\n\n\nclass SuccessAction(DSLModel):\n    name: str = Field(..., alias='name', description=\"Name of the success action.\")\n    type_: str = Field(..., alias='type', description=\"Type of action: 'end' or 'goto'.\")\n    step_id: Optional[str] = Field(None, alias='stepId', description=\"Step ID to transfer to upon success.\")\n    criteria: List[Criterion] = Field(default_factory=list, alias='criteria', description=\"Criteria for executing this action.\")\n\n\nclass Step(DSLModel):\n    step_id: str = Field(..., alias='stepId', description=\"Unique identifier for the step.\")\n    description: str = Field(None, alias='description', description=\"Description of the step.\")\n    operation_id: Optional[str] = Field(None, alias='operationId', description=\"The operation ID to execute.\")\n    request_body: Optional[RequestBody] = Field(None, alias='requestBody', description=\"Request body to pass to the operation.\")\n    parameters: List[Parameter] = Field(default_factory=list, alias='parameters', description=\"List of parameters for the step.\")\n    success_criteria: List[Criterion] = Field(default_factory=list, alias='successCriteria', description=\"Conditions for step success.\")\n    on_success: List[SuccessAction] = Field(default_factory=list, alias='onSuccess', description=\"Actions on success of the step.\")\n    outputs: Dict[str, str] = Field(default_factory=dict, alias='outputs', description=\"Outputs produced by this step.\")\n\n\nclass Workflow(DSLModel):\n    workflow_id: str = Field(..., alias='workflowId', description=\"Unique identifier for the workflow.\")\n    summary: str = Field(None, alias='summary', description=\"Summary of the workflow.\")\n    description: str = Field(None, alias='description', description=\"Detailed description of the workflow.\")\n    inputs: Dict[str, Any] = Field(default_factory=dict, alias='inputs', description=\"Inputs for the workflow, defined as JSON Schema.\")\n    steps: List[Step] = Field(default_factory=list, alias='steps', description=\"List of steps in the workflow.\")\n    outputs: Dict[str, str] = Field(default_factory=dict, alias='outputs', description=\"Outputs of the workflow.\")\n\n\nclass ArazzoSpecification(DSLModel):\n    arazzo: str = Field(..., alias='arazzo', description=\"Version of the Arazzo Specification.\")\n    info: Info = Field(..., alias='info', description=\"Metadata about the Arazzo workflows.\")\n    source_descriptions: List[SourceDescription] = Field(\n        ...,\n        alias='sourceDescriptions',\n        description=\"List of source descriptions, like OpenAPI references.\"\n    )\n    workflows: List[Workflow] = Field(..., alias='workflows', description=\"List of defined workflows.\")\n\n\ndef main():\n    \"\"\"Main function\"\"\"\n    # from dslmodel import init_lm, init_instant, init_text\n    # init_instant()\n\n    content = Path(\"../../examples/1.0.0/bnpl-arazzo.yaml\").read_text()\n    spec = ArazzoSpecification.from_yaml(content)\n    for wf in spec.workflows:\n        wf.inputs\n\n\ndef run_workflow(wf, inputs):\n    \n\n\nif __name__ == '__main__':\n    main()\n"
+        }
+    ]
+}

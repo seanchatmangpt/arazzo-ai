@@ -1,0 +1,142 @@
+{
+    "sourceFile": "tests/test_models.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 31,
+            "patches": [
+                {
+                    "date": 1729787099684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1729787108901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+    arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(arazzo)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787130836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,4 @@\n     arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(arazzo)\n\\ No newline at end of file\n+    spec = ArazzoSpecification.from_yaml(arazzo)\n+\n+def \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787137316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n     arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(arazzo)\n \n-def \n\\ No newline at end of file\n+def test_login_and_retrieve_pets():\n+    pass\n"
+                },
+                {
+                    "date": 1729787143536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+    \n+\n+def test_login_and_retrieve_pets():\n+    pass\n"
+                },
+                {
+                    "date": 1729787163933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+    \n+\n+from pathlib import Path\n+\n+\n+def test_login_and_retrieve_pets():\n+    arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(arazzo)\n"
+                },
+                {
+                    "date": 1729787170901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,9 @@\n     \n \n from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n \n \n def test_login_and_retrieve_pets():\n     arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(arazzo)\n-    \n-\n-def test_login_and_retrieve_pets():\n-    pass\n-    arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(arazzo)\n-\n-def test_login_and_retrieve_pets():\n-    pass\n"
+                },
+                {
+                    "date": 1729787177715,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n+\n+\n+def test_login_and_retrieve_pets():\n+    arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(arazzo)\n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787211758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,14 +4,5 @@\n \n def test_login_and_retrieve_pets():\n     arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(arazzo)\n-  \n-    \n-\n-from pathlib import Path\n-from arazzo_ai.models import ArazzoSpecification\n-\n-\n-def test_login_and_retrieve_pets():\n-    arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(arazzo)\n\\ No newline at end of file\n+    assert spec.workflows[0].wo == \"LoginAndRetrievePets\"\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787216963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,5 @@\n \n def test_login_and_retrieve_pets():\n     arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(arazzo)\n-    assert spec.workflows[0].wo == \"LoginAndRetrievePets\"\n\\ No newline at end of file\n+    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n"
+                },
+                {
+                    "date": 1729787224522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n+\n+\n+def test_login_and_retrieve_pets():\n+    arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(arazzo)\n+    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n"
+                },
+                {
+                    "date": 1729787245577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,12 +5,7 @@\n def test_login_and_retrieve_pets():\n     arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(arazzo)\n     assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n-from pathlib import Path\n-from arazzo_ai.models import ArazzoSpecification\n \n \n-def test_login_and_retrieve_pets():\n-    arazzo = Path(\"/Users/sac/dev/arazzo-ai/examples/1.0.0/LoginAndRetrievePets.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(arazzo)\n-    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n+d\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787253610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,5 +7,5 @@\n     spec = ArazzoSpecification.from_yaml(arazzo)\n     assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n \n \n-d\n\\ No newline at end of file\n+def test_bnpl():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787258876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,14 @@\n+from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n+\n+\n+def test_login_and_retrieve_pets():\n+    arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(arazzo)\n+    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n+\n+\n+def test_bnpl():\n+    bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(bnpl)\n+    assert spec.workflows[0].workflow_id == \"bnpl\"\n"
+                },
+                {
+                    "date": 1729787268367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,16 +10,5 @@\n \n def test_bnpl():\n     bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(bnpl)\n-    assert spec.workflows[0].workflow_id == \"bnpl\"\n-from pathlib import Path\n-from arazzo_ai.models import ArazzoSpecification\n-\n-\n-def test_login_and_retrieve_pets():\n-    arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(arazzo)\n-    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n-\n-\n-def test_bnpl():\n\\ No newline at end of file\n+    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n"
+                },
+                {
+                    "date": 1729787275826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,4 +11,7 @@\n def test_bnpl():\n     bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(bnpl)\n     assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n+\n+\n+def test_\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787291427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,5 @@\n     spec = ArazzoSpecification.from_yaml(bnpl)\n     assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n \n \n-def test_\n\\ No newline at end of file\n+def test_fapi()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787299034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,8 @@\n     spec = ArazzoSpecification.from_yaml(bnpl)\n     assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n \n \n-def test_fapi()\n\\ No newline at end of file\n+def test_fapi():\n+    fapi = Path(\"tests/FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"fapi\"\n"
+                },
+                {
+                    "date": 1729787307885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,5 +16,5 @@\n \n def test_fapi():\n     fapi = Path(\"tests/FAPI-PAR.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"fapi\"\n+    assert spec.workflows[0].workflow_id == \"FapiPar\"\n"
+                },
+                {
+                    "date": 1729787323997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,7 +14,7 @@\n     assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n \n \n def test_fapi():\n-    fapi = Path(\"tests/FAPI-PAR.arazzo.yaml\").read_text()\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"FapiPar\"\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n"
+                },
+                {
+                    "date": 1729787332139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,4 +17,7 @@\n def test_fapi():\n     fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+\n+def test_log\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787337945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,5 +19,5 @@\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n \n \n-def test_log\n\\ No newline at end of file\n+def test_login_and_retrieve_pets():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787344972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,4 @@\n def test_fapi():\n     fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-\n-\n-def test_login_and_retrieve_pets():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729787356283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,35 @@\n+from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n+\n+\n+def test_login_and_retrieve_pets():\n+    arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(arazzo)\n+    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n+\n+\n+def test_bnpl():\n+    bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(bnpl)\n+    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n+\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n"
+                },
+                {
+                    "date": 1729787366575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n \n \n def test_fapi():\n-    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    fapi = Path(\".yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n \n def test_fapi():\n@@ -32,24 +32,4 @@\n def test_fapi():\n     fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-from pathlib import Path\n-from arazzo_ai.models import ArazzoSpecification\n-\n-\n-def test_login_and_retrieve_pets():\n-    arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(arazzo)\n-    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n-\n-\n-def test_bnpl():\n-    bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(bnpl)\n-    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n-\n-\n-def test_fapi():\n-    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n"
+                },
+                {
+                    "date": 1729787385372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,16 +7,13 @@\n     spec = ArazzoSpecification.from_yaml(arazzo)\n     assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n \n \n-def test_bnpl():\n-    bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(bnpl)\n-    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n \n \n+\n def test_fapi():\n-    fapi = Path(\".yaml\").read_text()\n+    fapi = Path(\"Login.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n \n def test_fapi():\n"
+                },
+                {
+                    "date": 1729787390448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,36 @@\n+from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n+\n+\n+def test_bnpl():\n+    bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(bnpl)\n+    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n+\n+\n+def test_login_and_retrieve_pets():\n+    arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(arazzo)\n+    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n+\n+\n+\n+def test_fapi():\n+    fapi = Path(\"Login.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n"
+                },
+                {
+                    "date": 1729787396276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,31 @@\n+from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n+\n+\n+def test_bnpl():\n+    bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(bnpl)\n+    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n+\n+\n+\n+\n+def test_fapi():\n+    fapi = Path(\"Login.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n"
+                },
+                {
+                    "date": 1729787416825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,9 @@\n     spec = ArazzoSpecification.from_yaml(bnpl)\n     assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n \n \n-\n-\n-def test_fapi():\n+def test_extend():\n     fapi = Path(\"Login.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n \n@@ -28,72 +26,4 @@\n def test_fapi():\n     fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-from pathlib import Path\n-from arazzo_ai.models import ArazzoSpecification\n-\n-\n-def test_bnpl():\n-    bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(bnpl)\n-    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n-\n-\n-def test_login_and_retrieve_pets():\n-    arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(arazzo)\n-    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n-\n-\n-\n-def test_fapi():\n-    fapi = Path(\"Login.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-\n-def test_fapi():\n-    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-\n-def test_fapi():\n-    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-\n-def test_fapi():\n-    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-from pathlib import Path\n-from arazzo_ai.models import ArazzoSpecification\n-\n-\n-def test_login_and_retrieve_pets():\n-    arazzo = Path(\"LoginAndRetrievePets.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(arazzo)\n-    assert spec.workflows[0].workflow_id == \"loginUserRetrievePet\"\n-\n-\n-\n-\n-\n-def test_fapi():\n-    fapi = Path(\"Login.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-\n-def test_fapi():\n-    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-\n-def test_fapi():\n-    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n-\n-def test_fapi():\n-    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n-    spec = ArazzoSpecification.from_yaml(fapi)\n-    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n"
+                },
+                {
+                    "date": 1729787424576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,29 @@\n+from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n+\n+\n+def test_bnpl():\n+    bnpl = Path(\"bnpl-arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(bnpl)\n+    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n+\n+\n+def test_extended():\n+    fapi = Path(\"tests/ExtendedParametersExample.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n"
+                },
+                {
+                    "date": 1729787431545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n \n \n def test_extended():\n-    fapi = Path(\"tesxtendedParametersExample.arazzo.yaml\").read_text()\n+    fapi = Path(\"ExtendedParametersExample.arazzo.yaml\").read_text()\n     spec = ArazzoSpecification.from_yaml(fapi)\n     assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n \n def test_fapi():\n"
+                },
+                {
+                    "date": 1729787481688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,29 @@\n+from pathlib import Path\n+from arazzo_ai.models import ArazzoSpecification\n+\n+\n+def test_bnpl():\n+    yaml = Path(\"bnpl-arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(yaml)\n+    assert spec.workflows[0].workflow_id == \"ApplyForLoanAtCheckout\"\n+\n+\n+def test_extended():\n+    yaml = Path(\"ExtendedParametersExample.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(yaml)\n+    assert spec.workflows[0].workflow_id == \"animal-workflow\"\n+\n+def test_fapi():\n+    yaml = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(yaml)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"Login\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n+\n+def test_fapi():\n+    fapi = Path(\"FAPI-PAR.arazzo.yaml\").read_text()\n+    spec = ArazzoSpecification.from_yaml(fapi)\n+    assert spec.workflows[0].workflow_id == \"OIDC-PAR-AuthzCode\"\n"
+                }
+            ],
+            "date": 1729787099684,
+            "name": "Commit-0",
+            "content": ""
+        }
+    ]
+}

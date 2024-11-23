@@ -1,0 +1,39 @@
+### Authorization Code Flow
+# Step 1: Authorize
+GET http://localhost:8000/authorize?client_id=my-client-id&redirect_uri=http://localhost/callback&response_type=code&scope=read&state=12345
+
+### Step 2: Exchange Authorization Code for Token
+POST http://localhost:8000/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "authorization_code",
+  "client_id": "my-client-id",
+  "client_secret": "my-client-secret",
+  "code": "auth-code-my-client-id-fixed",
+  "redirect_uri": "http://localhost/callback"
+}
+
+### Refresh Token Flow
+POST http://localhost:8000/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "refresh_token",
+  "client_id": "my-client-id",
+  "client_secret": "my-client-secret",
+  "refresh_token": "refresh-token-my-client-id-fixed"
+}
+
+### Client Credentials Flow
+POST http://localhost:8000/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "client_credentials",
+  "client_id": "my-client-id",
+  "client_secret": "my-client-secret"
+}
+
+### Health Check
+GET http://localhost:8000/health
